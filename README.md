@@ -90,4 +90,4 @@ The following are the available API endpoints for the **Fitness Workout Tracker*
 
 ---
 
-Let me know if you’d like me to include more details or other API categories! 😊  
+
