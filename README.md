@@ -38,6 +38,7 @@ BASE_URL::`http://localhost:3000/`
        "email": "string",
        "password": "string"
      }
+     ```
 5.**Reset password**
   -**PATCH**`/user/reset_password`
   -**Body:**  
