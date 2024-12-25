@@ -32,7 +32,7 @@ BASE_URL::`http://localhost:3000/`
 
 4.**Forget Password Code**
    -**PATCH** `/user/forget_code`
-   **Body**
+   -**Body:**
     ```json
      {
        "email": "string",
@@ -40,7 +40,7 @@ BASE_URL::`http://localhost:3000/`
      }
 5.**Reset password**
   -**PATCH**`/user/reset_password`
-  **Body:**  
+  -**Body:**  
      ```json
      {
        "userName": "string",
