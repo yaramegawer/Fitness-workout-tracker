@@ -1,9 +1,9 @@
-import { asyncHandler } from "../utils/asyncHandler.js";
-import { User } from './../../DB/models/userModel.js';
+import { asyncHandler } from "../../utils/asyncHandler.js";
+import { User } from '../../../DB/models/userModel.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { Token } from './../../DB/models/tokenModel.js';
-import { sendEmail } from './../utils/sendEmails.js';
+import { Token } from '../../../DB/models/tokenModel.js';
+import { sendEmail } from '../../utils/sendEmails.js';
 import randomstring from 'randomstring';
 
 export const register=asyncHandler(async(req,res,next)=>{

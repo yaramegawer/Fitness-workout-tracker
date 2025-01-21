@@ -1,7 +1,7 @@
 import {Router} from 'express';
 import * as userController from './userController.js';
 import * as userSchema from './userSchema.js';
-import { validation } from '../middleware/validation.js';
+import { validation } from '../../middleware/validation.js';
 const router=Router();
 
 router.post('/register',validation(userSchema.register),userController.register);
