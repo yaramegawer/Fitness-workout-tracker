@@ -20,7 +20,7 @@ export const register=asyncHandler(async(req,res,next)=>{
 
     await User.create({...req.body,password:hashedPassword});
 
-    const confirmationLink=`http://localhost:3000/user/activate_account/${token}`;
+    const confirmationLink=`https://fitness-workout-tracker-virid.vercel.app/user/activate_account/${token}`;
 
     //send email
     const messageSent=await sendEmail({to:email,subject:"Activate account",html:`<a href=${confirmationLink}>Activate account</a>`});
