@@ -17,10 +17,6 @@ const userSchema=new Schema({
         required:true,
         minlength: 8,
     },
-    isConfirmed:{
-        type:Boolean,
-        default:false
-    },
     forgetCode:{
         type:String,
         length:5

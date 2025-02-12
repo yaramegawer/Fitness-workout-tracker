@@ -16,35 +16,12 @@ export const register=asyncHandler(async(req,res,next)=>{
     const hashedPassword=bcrypt.hashSync(password,parseInt(process.env.SALT_ROUND));
 
     //generate token
-    const token=jwt.sign({email},process.env.SECRET_KEY)
-
-    await User.create({...req.body,password:hashedPassword});
-
-    const confirmationLink=`https://fitness-workout-tracker-virid.vercel.app/user/activate_account/${token}`;
-
-    //send email
-    const messageSent=await sendEmail({to:email,subject:"Activate account",html:`<a href=${confirmationLink}>Activate account</a>`});
-    if(!messageSent) return next(new Error("Something went wrong!"))
-
-    return res.status(201).json({
+       return res.status(201).json({
         success:true,
         message:"user registered successfully "
     })
 });
 
-export const activateAccount=asyncHandler(async(req,res,next)=>{
-    const {token}=req.params;
-    const {email}=jwt.verify(token,process.env.SECRET_KEY);
-    
-    const user=await User.findOneAndUpdate({email},{isConfirmed:true});
-    if(!user)
-        return next(new Error("Invalid email!",{cause:403}));
-
-    return res.status(200).json({
-        success:true,
-        message:"Try to login now:)"
-    });
-})
 
 export const login=asyncHandler(async(req,res,next)=>{
     const {email,password}=req.body;
@@ -52,9 +29,6 @@ export const login=asyncHandler(async(req,res,next)=>{
     const user=await User.findOne({email});
     if(!user)
         return next(new Error("Invalid Email!",{cause:403}));
-
-    if(!user.isConfirmed) return next(new Error("You must activate your account first!"));
-
     const match=bcrypt.compareSync(password,user.password);
     if(!match)
         return next(new Error("Invalid password!",{cause:403}));
@@ -77,8 +51,7 @@ export const forgetCode=asyncHandler(async(req,res,next)=>{
     if(!user)
         return next(new Error("user not found!",{cause:404}));
 
-    if(!user.isConfirmed) return next(new Error("You must activate your account first!"));
-
+ 
     const forgetCode=randomstring.generate({
         charset:"numeric",
         length:5,
